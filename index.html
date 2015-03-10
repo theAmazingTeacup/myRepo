@@ -3,6 +3,7 @@
 <head>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
@@ -20,40 +21,15 @@
     <style>
         * {
             font-family: 'Open Sans', sans-serif !important;
-            text-align: center;
-            height: 100%;
+        }
+        
+        body {
+        	margin: 0;
+        	padding: 0;
             width: 100%;
+            height: 100vh;
             cursor: pointer;
-        }
-        
-        div {
-            width: 100%;
-            height: 70px;
-            line-height: 70px;
-        }
-        
-        .responseValue {
-            font-family: 'Quicksand', sans-serif;
-            height: auto;
-            width: 600px;
-            margin: auto;
-            text-align: center;
-            line-height: 1em;
-            border: 3px solid #CCCCCC;
-            margin-top: 16px;
-            margin-bottom: 16px
-        }
-        
-        .responseValueWrapper {
-            width: auto;
-            height: auto;
-            margin: 16px;
-            line-height: 1em;
-        }
-        
-        .responseValueText {
-            text-align: justify;
-            display: block;
+            overflow: hidden;
         }
         
         .my-show-hide-animation.ng-hide-add, .my-show-hide-animation.ng-hide-remove {
@@ -63,7 +39,7 @@
             opacity:1;
           }
 
-          .my-show-hide-animation.ng-hide {
+        .my-show-hide-animation.ng-hide {
             opacity:0;
           }
 
@@ -77,20 +53,91 @@
           .my-show-hide-animation-pulldown.ng-hide {
             max-height: 0;
           }
+          
+        .table {
+        	display: table;
+        	width: 100%;
+        	height: 100%;
+        }
+        .table-cell {
+        	display: table-cell;
+        	width: 50%;
+        	height: auto;
+        }
+        .table-item {
+        	position: relative;
+        	width: 100%;
+        	height: 20%;
+        }
+        .table-item span{
+        	margin-left: 16px;
+		     vertical-align: middle;
+		     line-height: 168px;
+        }
+        .responseValue {
+        	position: absolute;
+        	width: calc(50% - 16px);
+        	height: 100%;
+        	font-size: 0.8em;
+        	overflow: auto;
+    		padding-right: 15px
+        }
+        .responseValue-wrapper {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+        }
+        .responseValueText {
+            font-weight: bold;
+        	margin: 16px;
+        }
+        
+        .one {
+        	background: #1abc9c;
+        	color: white;
+        }
+        
+        .two {
+        	background: #2ecc71;
+        	color: white;
+        }
+        
+        .three {
+        	background: #3498db;
+        	color: white;
+        }
+        
+        .four {
+        	background: #f1c40f;
+        	color: white;
+        }
+        
+        .five {
+        	background: #e74c3c;
+        	color: white;
+        }
+
+
     </style>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl as vm">
-    <div ng-click="vm.clickMeToGet()"><h1>CLICK ME TO GET A INVOICE</h1></div>
-    <div ng-click="vm.clickMeToGetAll()"><h1>CLICK ME TO GET ALL INVOICES</h1></div>
-    <div ng-click="vm.clickMeToPost()"><h1>CLICK ME TO POST A INVOICE</h1></div>
-    <div ng-click="vm.clickMeToPut()"><h1>CLICK ME TO PUT A INVOICE</h1></div>
-    <div ng-click="vm.clickMeToDelete()"><h1>CLICK ME TO DELETE A INVOICE</h1></div>
-    <br>
-    <span ng-show="vm.responseValue">Console</span>
-    <div class="responseValue my-show-hide-animation" ng-show="vm.responseValue">
-        <div class="responseValueWrapper">
-            <b class="responseValueText">{{vm.responseValue}}</b>
-        </div>
-    </div>
+
+	<div class="table">
+		<div class="table-cell">
+			<div class="table-item one" ng-click="vm.clickMeToGet()"><span>CLICK ME TO GET A INVOICE</span></div>
+			<div class="table-item two" ng-click="vm.clickMeToGetAll()"><span>CLICK ME TO GET ALL INVOICES</span></div>
+			<div class="table-item three" ng-click="vm.clickMeToPost()"><span>CLICK ME TO POST A INVOICE</span></div>
+			<div class="table-item four" ng-click="vm.clickMeToPut()"><span>CLICK ME TO PUT A INVOICE</span></div>
+			<div class="table-item five" ng-click="vm.clickMeToDelete()"><span>CLICK ME TO DELETE A INVOICE</span></div>
+		</div>
+		
+		<div class="table-cell">
+			<div class="responseValue-wrapper my-show-hide-animation" ng-show="vm.responseValue">
+				<div class="responseValue">
+			        <pre class="responseValueText"><code>{{vm.responseValue}}</code></pre>
+		    	</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
